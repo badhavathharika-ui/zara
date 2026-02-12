@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newsletter - LuxeStyle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: #fff;
+            text-align: center;
+            padding: 4rem 0;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.3rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            padding: 4rem 0;
+        }
+
+        .newsletter-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: #f8f9fa;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .newsletter-content h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .newsletter-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Benefits List */
+        .benefits-list {
+            margin: 2rem 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .benefits-list li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .benefits-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            margin: 1.5rem 0;
+        }
+
+        .checkbox-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: normal;
+            color: #555;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.5rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background: #c0392b;
+        }
+
+        .privacy-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: #fff;
+            border-left: 4px solid #e74c3c;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 4rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .newsletter-content {
+                padding: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">LuxeStyle</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Join Our Newsletter</h1>
+        <p>Stay updated with the latest trends and exclusive offers</p>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section container">
+        <div class="newsletter-content">
+            <h2>Subscribe Today!</h2>
+            <p>Be the first to know about new collections, special promotions, and style tips from our experts.</p>
+
+            <ul class="benefits-list">
+                <li>Exclusive early access to new collections</li>
+                <li>Special subscriber-only discounts (up to 30% off)</li>
+                <li>Weekly fashion tips and styling advice</li>
+                <li>Birthday surprises and rewards</li>
+                <li>VIP event invitations</li>
+            </ul>
+
+            <form id="newsletterForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender Preference (for personalized recommendations)</label>
+                    <select id="gender" name="gender">
+                        <option value="">Select...</option>
+                        <option value="womens">Women's Fashion</option>
+                        <option value="mens">Men's Fashion</option>
+                        <option value="both">Both</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="checkbox-group">
+                    <label><strong>What are you interested in?</strong></label>
+                    <label><input type="checkbox" name="interest" value="new-arrivals"> New Arrivals</label>
+                    <label><input type="checkbox" name="interest" value="sales"> Sales & Promotions</label>
+                    <label><input type="checkbox" name="interest" value="style-tips"> Style Tips & Trends</label>
+                    <label><input type="checkbox" name="interest" value="events"> Exclusive Events</label>
+                </div>
+
+                <div class="form-group">
+                    <label for="frequency">Email Frequency</label>
+                    <select id="frequency" name="frequency">
+                        <option value="daily">Daily</option>
+                        <option value="weekly" selected>Weekly</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Subscribe Now</button>
+
+                <div class="privacy-note">
+                    <strong>Privacy Guarantee:</strong> We respect your privacy. Your email will never be shared with third parties. You can unsubscribe at any time with a single click.
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Subscribe?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎁</div>
+                    <h3>Exclusive Offers</h3>
+                    <p>Get access to subscriber-only deals and limited-time promotions before anyone else.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👗</div>
+                    <h3>Style Inspiration</h3>
+                    <p>Receive curated looks, outfit ideas, and fashion tips from our expert stylists.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⭐</div>
+                    <h3>VIP Treatment</h3>
+                    <p>Enjoy early access to sales, new collections, and exclusive member-only events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 LuxeStyle Fashion Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const frequency = document.getElementById('frequency').value;
+            
+            if (firstName && lastName && email) {
+                alert('Welcome to LuxeStyle Newsletter, ' + firstName + ' ' + lastName + '!\n\nYou will receive ' + frequency + ' updates at ' + email + '.');
+                this.reset();
+            }
+        });
+    </script>
+</body>
+</html>
