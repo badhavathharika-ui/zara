@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - LuxeStyle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Navigation */
+        nav {
+            background: #2c3e50;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Shop Section */
+        .shop-section {
+            padding: 3rem 0;
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+        }
+
+        /* Sidebar Filter Form */
+        .filter-sidebar {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            height: fit-content;
+        }
+
+        .filter-sidebar h3 {
+            margin-bottom: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .filter-group {
+            margin-bottom: 2rem;
+        }
+
+        .filter-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .checkbox-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #e74c3c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .filter-btn:hover {
+            background: #c0392b;
+        }
+
+        /* Products Grid */
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 280px;
+            background: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            color: #95a5a6;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .add-cart-btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #2c3e50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-cart-btn:hover {
+            background: #34495e;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .shop-section {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-sidebar {
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .products-container {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="index.html" class="logo">LuxeStyle</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="newsletter.html">Newsletter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our Collection</h1>
+        <p>Browse our latest fashion pieces</p>
+    </section>
+
+    <!-- Shop Section -->
+    <section class="shop-section container">
+        <!-- Filter Sidebar -->
+        <aside class="filter-sidebar">
+            <h3>Filter Products</h3>
+            <form id="filterForm">
+                <div class="filter-group">
+                    <label for="category">Category</label>
+                    <select id="category" name="category">
+                        <option value="">All Categories</option>
+                        <option value="dresses">Dresses</option>
+                        <option value="tops">Tops</option>
+                        <option value="bottoms">Bottoms</option>
+                        <option value="accessories">Accessories</option>
+                        <option value="shoes">Shoes</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Size</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="size" value="xs"> XS</label>
+                        <label><input type="checkbox" name="size" value="s"> S</label>
+                        <label><input type="checkbox" name="size" value="m"> M</label>
+                        <label><input type="checkbox" name="size" value="l"> L</label>
+                        <label><input type="checkbox" name="size" value="xl"> XL</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <label for="priceRange">Price Range</label>
+                    <select id="priceRange" name="priceRange">
+                        <option value="">All Prices</option>
+                        <option value="0-50">$0 - $50</option>
+                        <option value="50-100">$50 - $100</option>
+                        <option value="100-200">$100 - $200</option>
+                        <option value="200-500">$200 - $500</option>
+                        <option value="500+">$500+</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label>Color</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="color" value="black"> Black</label>
+                        <label><input type="checkbox" name="color" value="white"> White</label>
+                        <label><input type="checkbox" name="color" value="red"> Red</label>
+                        <label><input type="checkbox" name="color" value="blue"> Blue</label>
+                        <label><input type="checkbox" name="color" value="green"> Green</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="filter-btn">Apply Filters</button>
+            </form>
+        </aside>
+
+        <!-- Products Grid -->
+        <div class="products-container">
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Elegant Evening Dress</h3>
+                    <p>Perfect for special occasions</p>
+                    <p class="price">$299.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Designer Handbag</h3>
+                    <p>Luxury leather bag</p>
+                    <p class="price">$449.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Classic Blazer</h3>
+                    <p>Professional and stylish</p>
+                    <p class="price">$199.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Leather Heels</h3>
+                    <p>Comfortable and elegant</p>
+                    <p class="price">$179.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Summer Dress</h3>
+                    <p>Light and breezy</p>
+                    <p class="price">$129.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Designer Sunglasses</h3>
+                    <p>UV protection included</p>
+                    <p class="price">$89.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Silk Scarf</h3>
+                    <p>Premium quality silk</p>
+                    <p class="price">$69.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">Product Image</div>
+                <div class="product-info">
+                    <h3>Denim Jeans</h3>
+                    <p>Classic fit, modern style</p>
+                    <p class="price">$99.99</p>
+                    <button class="add-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 LuxeStyle Fashion Store. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('filterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Filters applied! (In a real application, this would filter the products)');
+        });
+    </script>
+</body>
+</html>
